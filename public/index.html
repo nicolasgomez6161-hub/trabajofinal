@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tienda de Componentes Gamers</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="barra" id="barra" hidden>
+    <strong>TIENDA GAMER</strong>
+    <nav class="menu">
+      <button type="button" data-seccion="resumen" class="activo">Resumen</button>
+      <button type="button" data-seccion="componentes">Componentes</button>
+      <button type="button" data-seccion="categorias">Categorías</button>
+      <button type="button" data-seccion="clientes">Clientes</button>
+      <button type="button" data-seccion="ventas">Ventas</button>
+      <button type="button" data-seccion="perfil">Mi perfil</button>
+      <button type="button" id="btn-cerrar">Cerrar sesión</button>
+    </nav>
+  </div>
+
+  <!-- Login / registro -->
+  <div class="formulario" id="login-card">
+    <h1>Tienda Gamer</h1>
+    <p class="exito" id="mensaje-login"></p>
+
+    <form id="form-login">
+      <div class="campo">
+        <label for="login-email">Email</label>
+        <input type="email" id="login-email" value="admin@tiendagamer.test" required />
+      </div>
+      <div class="campo">
+        <label for="login-password">Contraseña</label>
+        <input type="password" id="login-password" value="admin123" required />
+      </div>
+      <div class="botones">
+        <button type="submit" class="boton-enviar">Ingresar</button>
+      </div>
+    </form>
+
+    <p><a id="mostrar-registro">¿No tenés cuenta? Registrate</a></p>
+
+    <form id="form-registro" class="oculto">
+      <h2>Registro</h2>
+      <div class="campo">
+        <label for="reg-nombre">Nombre</label>
+        <input type="text" id="reg-nombre" required />
+      </div>
+      <div class="campo">
+        <label for="reg-email">Email</label>
+        <input type="email" id="reg-email" required />
+      </div>
+      <div class="campo">
+        <label for="reg-password">Contraseña</label>
+        <input type="password" id="reg-password" minlength="6" required />
+      </div>
+      <div class="campo">
+        <label for="reg-confirmacion">Confirmar contraseña</label>
+        <input type="password" id="reg-confirmacion" minlength="6" required />
+      </div>
+      <div class="botones">
+        <button type="submit" class="boton-enviar">Crear cuenta</button>
+        <button type="button" id="volver-login">Volver al login</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Aplicación -->
+  <div id="app" class="oculto">
+    <section id="seccion-resumen" class="seccion">
+      <div class="formulario ancho">
+        <h1>Resumen de la tienda</h1>
+        <p class="exito" id="mensaje-app"></p>
+        <div class="tarjetas">
+          <div class="tarjeta">Componentes<span id="total-componentes">0</span></div>
+          <div class="tarjeta">Categorías<span id="total-categorias">0</span></div>
+          <div class="tarjeta">Clientes<span id="total-clientes">0</span></div>
+          <div class="tarjeta">Ventas<span id="total-ventas">0</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPONENTES -->
+    <section id="seccion-componentes" class="seccion oculto">
+      <div class="formulario ancho">
+        <h2>Componentes</h2>
+        <p class="exito" id="msg-componentes"></p>
+        <div class="filtros">
+          <div class="campo">
+            <label for="filtro-componentes">Buscar por nombre, marca o modelo</label>
+            <input type="text" id="filtro-componentes" placeholder="RTX, Ryzen..." />
+          </div>
+          <div class="botones">
+            <button type="button" id="btn-buscar-componentes">Buscar</button>
+          </div>
+        </div>
+
+        <form id="form-componente">
+          <input type="hidden" id="comp-id" />
+          <div class="dos-columnas">
+            <div class="campo">
+              <label for="comp-categoria">Categoría</label>
+              <select id="comp-categoria" required></select>
+            </div>
+            <div class="campo">
+              <label for="comp-nombre">Nombre</label>
+              <input type="text" id="comp-nombre" required />
+            </div>
+            <div class="campo">
+              <label for="comp-marca">Marca</label>
+              <input type="text" id="comp-marca" required />
+            </div>
+            <div class="campo">
+              <label for="comp-modelo">Modelo</label>
+              <input type="text" id="comp-modelo" />
+            </div>
+            <div class="campo">
+              <label for="comp-precio">Precio</label>
+              <input type="number" id="comp-precio" min="0" step="0.01" required />
+            </div>
+            <div class="campo">
+              <label for="comp-stock">Stock</label>
+              <input type="number" id="comp-stock" min="0" step="1" required />
+            </div>
+          </div>
+          <div class="campo">
+            <label for="comp-descripcion">Descripción</label>
+            <textarea id="comp-descripcion"></textarea>
+          </div>
+          <label class="check"><input type="checkbox" id="comp-activo" checked /> Activo</label>
+          <div class="botones">
+            <button type="submit" class="boton-enviar">Guardar componente</button>
+            <button type="button" id="comp-nuevo">Limpiar</button>
+          </div>
+        </form>
+
+        <table>
+          <thead>
+            <tr><th>ID</th><th>Nombre</th><th>Categoría</th><th>Marca</th><th>Precio</th><th>Stock</th><th>Acciones</th></tr>
+          </thead>
+          <tbody id="tabla-componentes"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- CATEGORÍAS -->
+    <section id="seccion-categorias" class="seccion oculto">
+      <div class="formulario ancho">
+        <h2>Categorías</h2>
+        <p class="exito" id="msg-categorias"></p>
+        <form id="form-categoria">
+          <input type="hidden" id="cat-id" />
+          <div class="campo">
+            <label for="cat-nombre">Nombre</label>
+            <input type="text" id="cat-nombre" required />
+          </div>
+          <div class="campo">
+            <label for="cat-descripcion">Descripción</label>
+            <input type="text" id="cat-descripcion" />
+          </div>
+          <div class="botones">
+            <button type="submit" class="boton-enviar">Guardar categoría</button>
+            <button type="button" id="cat-nuevo">Limpiar</button>
+          </div>
+        </form>
+        <table>
+          <thead><tr><th>ID</th><th>Nombre</th><th>Descripción</th><th>Acciones</th></tr></thead>
+          <tbody id="tabla-categorias"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- CLIENTES -->
+    <section id="seccion-clientes" class="seccion oculto">
+      <div class="formulario ancho">
+        <h2>Clientes</h2>
+        <p class="exito" id="msg-clientes"></p>
+        <div class="filtros">
+          <div class="campo">
+            <label for="filtro-clientes">Buscar cliente</label>
+            <input type="text" id="filtro-clientes" placeholder="Nombre, apellido o email" />
+          </div>
+          <div class="botones"><button type="button" id="btn-buscar-clientes">Buscar</button></div>
+        </div>
+        <form id="form-cliente">
+          <input type="hidden" id="cli-id" />
+          <div class="dos-columnas">
+            <div class="campo"><label for="cli-nombre">Nombre</label><input type="text" id="cli-nombre" required /></div>
+            <div class="campo"><label for="cli-apellido">Apellido</label><input type="text" id="cli-apellido" required /></div>
+            <div class="campo"><label for="cli-email">Email</label><input type="email" id="cli-email" required /></div>
+            <div class="campo"><label for="cli-telefono">Teléfono</label><input type="text" id="cli-telefono" /></div>
+          </div>
+          <div class="campo"><label for="cli-direccion">Dirección</label><input type="text" id="cli-direccion" /></div>
+          <div class="botones">
+            <button type="submit" class="boton-enviar">Guardar cliente</button>
+            <button type="button" id="cli-nuevo">Limpiar</button>
+          </div>
+        </form>
+        <table>
+          <thead><tr><th>ID</th><th>Nombre</th><th>Email</th><th>Teléfono</th><th>Acciones</th></tr></thead>
+          <tbody id="tabla-clientes"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- VENTAS -->
+    <section id="seccion-ventas" class="seccion oculto">
+      <div class="formulario ancho">
+        <h2>Ventas</h2>
+        <p class="exito" id="msg-ventas"></p>
+        <form id="form-venta">
+          <div class="campo"><label for="ven-cliente">Cliente</label><select id="ven-cliente" required></select></div>
+          <div class="filtros">
+            <div class="campo"><label for="ven-componente">Componente</label><select id="ven-componente"></select></div>
+            <div class="campo"><label for="ven-cantidad">Cantidad</label><input type="number" id="ven-cantidad" min="1" step="1" value="1" /></div>
+            <div class="botones"><button type="button" id="ven-agregar">Agregar item</button></div>
+          </div>
+          <ul id="items-venta"></ul>
+          <p><strong>Total: $<span id="ven-total">0</span></strong></p>
+          <div class="campo"><label for="ven-observaciones">Observaciones</label><textarea id="ven-observaciones"></textarea></div>
+          <div class="botones"><button type="submit" class="boton-enviar">Registrar venta</button></div>
+        </form>
+
+        <h3>Modificar estado de una venta</h3>
+        <form id="form-venta-editar">
+          <input type="hidden" id="ved-id" />
+          <div class="dos-columnas">
+            <div class="campo">
+              <label for="ved-estado">Estado</label>
+              <select id="ved-estado">
+                <option value="pendiente">pendiente</option>
+                <option value="confirmada">confirmada</option>
+                <option value="anulada">anulada</option>
+              </select>
+            </div>
+            <div class="campo"><label for="ved-observaciones">Observaciones</label><input type="text" id="ved-observaciones" /></div>
+          </div>
+          <div class="botones"><button type="submit" class="boton-enviar">Guardar cambios</button></div>
+        </form>
+
+        <table>
+          <thead><tr><th>ID</th><th>Cliente</th><th>Fecha</th><th>Total</th><th>Estado</th><th>Detalle</th><th>Acciones</th></tr></thead>
+          <tbody id="tabla-ventas"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PERFIL -->
+    <section id="seccion-perfil" class="seccion oculto">
+      <div class="formulario">
+        <h2>Mi perfil</h2>
+        <div id="datos-perfil"></div>
+      </div>
+    </section>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

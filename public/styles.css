@@ -1,0 +1,133 @@
+/* Mismo estilo que el proyecto base: fondo #eef2f7, tarjeta blanca y azul #234a91. */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 30px;
+  font-family: Arial, sans-serif;
+  background-color: #eef2f7;
+  color: #1c2b3a;
+}
+
+.contenedor { max-width: 1100px; margin: 0 auto; }
+
+.barra {
+  max-width: 1100px;
+  margin: 0 auto 20px;
+  padding: 16px 20px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.barra strong { color: #234a91; font-size: 20px; }
+
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+  align-items: center;
+}
+
+.menu button {
+  padding: 8px 12px;
+  font-size: 14px;
+  background-color: #eef2f7;
+  color: #234a91;
+  border: 1px solid #aeb8c4;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.menu button.activo { background-color: #234a91; color: white; }
+
+.formulario {
+  max-width: 600px;
+  margin: auto;
+  padding: 30px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.formulario.ancho { max-width: 1100px; }
+
+h1 { color: #234a91; text-align: center; }
+h2 { color: #234a91; margin-top: 0; }
+
+.campo { margin-bottom: 18px; }
+
+label { display: block; margin-bottom: 6px; font-weight: bold; }
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #aeb8c4;
+  border-radius: 6px;
+  font-family: Arial, sans-serif;
+}
+
+textarea { min-height: 70px; }
+
+.check { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+.check input { width: auto; margin: 0; }
+
+.botones { display: flex; gap: 10px; margin-top: 10px; }
+
+button {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  background-color: #d5dbe3;
+  color: #1c2b3a;
+}
+
+.boton-enviar { color: white; background-color: #234a91; }
+.boton-peligro { color: white; background-color: #b3261e; }
+
+a { color: #234a91; text-decoration: none; cursor: pointer; }
+
+.error { color: #d32f2f; font-size: 14px; margin: 4px 0 0; }
+.exito { color: #177245; font-size: 14px; margin: 0 0 14px; }
+.oculto { display: none !important; }
+
+table { width: 100%; border-collapse: collapse; margin-top: 18px; font-size: 14px; }
+th, td { border: 1px solid #aeb8c4; padding: 8px; text-align: left; vertical-align: top; }
+th { background-color: #234a91; color: white; }
+tr:nth-child(even) td { background-color: #f7f9fc; }
+
+.acciones { display: flex; flex-wrap: wrap; gap: 4px; }
+.acciones button { padding: 6px 8px; font-size: 13px; flex: 0 0 auto; }
+
+.filtros { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; }
+.filtros .campo { flex: 1 1 160px; margin-bottom: 10px; }
+.filtros .botones { flex: 0 0 auto; margin-bottom: 10px; }
+.filtros button { padding: 10px 14px; }
+
+.dos-columnas { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+.tarjetas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px;
+  margin: 0 0 20px;
+}
+
+.tarjeta {
+  padding: 18px;
+  border: 1px solid #aeb8c4;
+  border-radius: 8px;
+  background-color: #f7f9fc;
+  text-align: center;
+}
+
+.tarjeta span { display: block; font-size: 28px; color: #234a91; font-weight: bold; }
+
+@media (max-width: 800px) {
+  body { padding: 12px; }
+  .dos-columnas { grid-template-columns: 1fr; }
+}
